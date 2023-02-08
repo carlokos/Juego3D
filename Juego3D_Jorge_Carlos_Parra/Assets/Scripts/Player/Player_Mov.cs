@@ -17,8 +17,8 @@ public class Player_Mov : MonoBehaviour
     private bool isGrounded;
 
     [Header ("Run Properties")]
-    [SerializeField] private float StaminaCost = 0.05f;
-    [SerializeField] private float StaminaRecovery = 0.03f;
+    [SerializeField] private float StaminaCost = 0.5f;
+    [SerializeField] private float StaminaRecovery = 0.4f;
     [SerializeField] private float sprintSpeed = 5f;
     private float speedBoost = 1f;
     private bool canSprint = true;
@@ -47,7 +47,19 @@ public class Player_Mov : MonoBehaviour
             GameManager.instance.LoseStamina(StaminaCost);
         }
         else
+        {
             speedBoost = 1f;
+            GameManager.instance.RecoverStamina(StaminaRecovery);
+        }
+
+        if (GameManager.instance.stamina <= 0  || !canSprint)
+        {
+            canSprint = false;
+            if (GameManager.instance.stamina > GameManager.instance.maxStamina / 4)
+            {
+                canSprint = true;
+            }
+        }
 
         //Salto
         isGrounded = Physics.CheckSphere(groundCheck.position, SphereRadius, groundMask);

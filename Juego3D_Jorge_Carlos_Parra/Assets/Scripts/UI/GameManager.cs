@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public int life = 10;
     public float stamina = 100;
-    private int maxStamina = 100;
-    private int maxLife = 10;
+    public int maxStamina = 100;
+    public int maxLife = 10;
 
     private Coroutine mCoroutineLosing;
+    private Coroutine mCoroutineRecovering;
     //Singlenton 
     //
     public static GameManager instance
@@ -39,6 +42,12 @@ public class GameManager : MonoBehaviour
     public void LoseStamina(float lost)
     {
         //Desactivar recuperar stamina
+        if (mCoroutineRecovering != null)
+        {
+            StopCoroutine(mCoroutineRecovering);
+            mCoroutineRecovering = null;
+        }
+
         if(stamina - lost > 0)
         {
             if(mCoroutineLosing != null)
@@ -49,6 +58,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RecoverStamina(float recover)
+    {
+        //desactivamos perder stamina
+        if(mCoroutineLosing != null)
+        {
+            StopCoroutine(mCoroutineLosing);
+            mCoroutineLosing = null;
+        }
+
+        if(mCoroutineRecovering != null)
+        {
+            StopCoroutine(mCoroutineRecovering);
+        }
+        mCoroutineRecovering = StartCoroutine(RecoveringStaminaCoroutine(recover));
+    }
+
+    private IEnumerator RecoveringStaminaCoroutine(float recover)
+    {
+        while (stamina < maxStamina)
+        {
+            stamina += recover;
+            yield return new WaitForSeconds(0.1f);
+        }
+        mCoroutineRecovering = null;
+    }
+
     private IEnumerator LosingStaminaCoroutine(float lost)
     {
         while(stamina >= 0)
@@ -57,6 +92,5 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         mCoroutineLosing = null;
-        //Desactivar sprint;
     }
 }

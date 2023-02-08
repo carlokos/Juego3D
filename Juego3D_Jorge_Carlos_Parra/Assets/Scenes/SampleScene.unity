@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,6 +173,14 @@ PrefabInstance:
     - target: {fileID: 9086451910221534403, guid: 4fac9c032041c3f428b6cee03c3798a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086451910221534408, guid: 4fac9c032041c3f428b6cee03c3798a6, type: 3}
+      propertyPath: StaminaCost
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9086451910221534408, guid: 4fac9c032041c3f428b6cee03c3798a6, type: 3}
+      propertyPath: StaminaRecovery
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 9086451910221534409, guid: 4fac9c032041c3f428b6cee03c3798a6, type: 3}
       propertyPath: m_Name
@@ -555,6 +563,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 10
   stamina: 100
+  maxStamina: 100
+  maxLife: 10
 --- !u!4 &910351908
 Transform:
   m_ObjectHideFlags: 0
@@ -792,6 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staminaBar: {fileID: 873984601}
+  BGStaminaBar: {fileID: 1962335968}
 --- !u!225 &1962335968
 CanvasGroup:
   m_ObjectHideFlags: 0
