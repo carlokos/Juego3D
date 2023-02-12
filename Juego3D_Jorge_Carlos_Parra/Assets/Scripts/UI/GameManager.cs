@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int life = 10;
+    public float life = 10;
     public float stamina = 100;
     public int maxStamina = 100;
     public int maxLife = 10;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void LoseHealth(int lost)
+    public void LoseHealth(float lost)
     {
         life -= lost;
         if(life <= 0)
