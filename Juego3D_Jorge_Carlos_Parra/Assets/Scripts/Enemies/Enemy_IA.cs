@@ -17,12 +17,14 @@ public class Enemy_IA : MonoBehaviour
     [SerializeField] private float speed;
     private GameObject target;
     private bool inRange;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         target = GameObject.Find("Player");
     }
+
     private void Comportamiento_Enemigo()
     {
         if (Vector3.Distance(transform.position, target.transform.position) > radio_vision)
@@ -72,19 +74,5 @@ public class Enemy_IA : MonoBehaviour
     void Update()
     {
         Comportamiento_Enemigo();
-    }
-
-    public void Attacking()
-    {
-        StartCoroutine(AttackCoroutine());
-    }
-
-    private IEnumerator AttackCoroutine()
-    {
-        inRange = false;
-        agente.speed = 0;
-        yield return new WaitForSeconds(2.50f);
-        inRange = true;
-        agente.speed = 2.5f;
     }
 }

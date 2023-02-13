@@ -17,17 +17,11 @@ public class Enemy_basic : MonoBehaviour
     private bool canTakeDamage = true;
     private bool canAttack = true;
     
-    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         hitbox.enabled = false;
         attackRange.enabled = true;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /*
@@ -37,10 +31,8 @@ public class Enemy_basic : MonoBehaviour
     {
         canAttack = false;
         anim.SetTrigger("Attack");
-        agente.speed = 0;
-        yield return new WaitForSeconds(2.50f);
+        yield return new WaitForSeconds(4f);
         canAttack = true;
-        agente.speed = 2.5f;
     }
 
     private IEnumerator damageCoroutine()
@@ -48,9 +40,9 @@ public class Enemy_basic : MonoBehaviour
         attackRange.enabled = false;
         anim.SetTrigger("Damage");
         agente.speed = 0;
+        agente.enabled = false;
         yield return new WaitForSeconds(.3f);
-        attackRange.enabled = true;
-        agente.speed = 2.5f;
+        attackRange.enabled = true;    
     }
 
     /*
@@ -65,6 +57,16 @@ public class Enemy_basic : MonoBehaviour
         hitbox.enabled = false;
     }
 
+    public void DesactivateRange()
+    {
+        attackRange.enabled = false;
+    }
+
+    public void ActivateRange()
+    {
+        attackRange.enabled = true;
+    } 
+
     public void makeAttackAnimation()
     {
         if (canAttack)
@@ -76,10 +78,10 @@ public class Enemy_basic : MonoBehaviour
         life -= damage;
         if(life <= 0 && canTakeDamage)
         {
-            agente.speed = 0;
+            //desactivamos todo para que no haya ningun error con las animaciones y activamos la animacion de muerte
+            setAgenteFalse();
             attackRange.enabled = false;
             hitbox.enabled = false;
-            agente.enabled = false;
             canTakeDamage = false;
             anim.SetTrigger("Death");
             canAttack = false;
@@ -88,6 +90,18 @@ public class Enemy_basic : MonoBehaviour
             StartCoroutine(damageCoroutine());
         }
             
+    }
+
+    public void setAgenteTrue()
+    {
+        agente.speed = 2.5f;
+        agente.enabled = true;
+    }
+
+    public void setAgenteFalse()
+    {
+        agente.speed = 0;
+        agente.enabled = false;
     }
 
     public void despawnEnemy()

@@ -12,5 +12,11 @@ public class Enemy_weapon_behaviour : MonoBehaviour
         {
             GameManager.instance.LoseHealth(damage);
         }
+
+        if (other.gameObject.CompareTag("Shield"))
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+            Debug.Log("Bloqueado");
+        }
     }
 }

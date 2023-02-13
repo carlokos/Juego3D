@@ -322,6 +322,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: setAgenteFalse
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: e8671dc75d0aab84485a4c2912db9f21, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.33971214
         functionName: ActivateHitbox
         data: 
@@ -331,6 +338,27 @@ ModelImporter:
         messageOptions: 0
       - time: 0.42215785
         functionName: DesactivateHitbox
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: e8671dc75d0aab84485a4c2912db9f21, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9515865
+        functionName: setAgenteTrue
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: e8671dc75d0aab84485a4c2912db9f21, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: DesactivateRange
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: e8671dc75d0aab84485a4c2912db9f21, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9631177
+        functionName: ActivateRange
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: e8671dc75d0aab84485a4c2912db9f21, type: 3}
         floatParameter: 0

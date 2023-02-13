@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     private Coroutine mCoroutineLosing;
     private Coroutine mCoroutineRecovering;
+
+    [SerializeField] private GameOverManager gameOverPanel;
     //Singlenton 
     //
     public static GameManager instance
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Time.timeScale = 1;
     }
     // Update is called once per frame
     void Update()
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
         life -= lost;
         if(life <= 0)
         {
-            Debug.Log("Muelto");
+            gameOverPanel.GameOver();  
         }
     }
 

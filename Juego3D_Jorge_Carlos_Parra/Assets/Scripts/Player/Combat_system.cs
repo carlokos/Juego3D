@@ -20,6 +20,15 @@ public class Combat_system : MonoBehaviour
         {
             anim.SetTrigger("hit1");
         }
+
+        if (Input.GetButton("Fire2"))
+        {
+            anim.SetBool("Block", true);
+        }
+        else
+        {
+            anim.SetBool("Block", false);
+        }
     }
 
     public void DesactivateHitbox()
