@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
-    private Animator playerAnim;
+    private Player_Mov player;
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
         gameObject.GetComponent<CanvasGroup>().interactable = false;
-        //playerAnim = GameObject.Find("Player").GetComponent<Animator>();
+        player = GameObject.Find("Player").GetComponent<Player_Mov>(); ;
     }
 
     public void GameOver()
     {
+        player.CanMove = false;
         //playerAnim.SetTrigger("Death");
         StartCoroutine(GameOverAnimation());
     }
