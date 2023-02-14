@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         while (stamina < maxStamina)
         {
             stamina += recover;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
         mCoroutineRecovering = null;
     }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         while(stamina >= 0)
         {
             stamina -= lost;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
         mCoroutineLosing = null;
     }
