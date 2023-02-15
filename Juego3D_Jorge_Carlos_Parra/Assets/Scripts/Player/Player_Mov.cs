@@ -9,6 +9,7 @@ public class Player_Mov : MonoBehaviour
     [SerializeField] private float baseSpeed = 12f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
+    private Vector3 move;
     private bool canMove = true;
 
     [Header("Jump Properties")]
@@ -26,6 +27,8 @@ public class Player_Mov : MonoBehaviour
     private Vector3 velocity;
 
     public bool CanMove { get => canMove; set => canMove = value; }
+    public CharacterController Controller { get => controller; set => controller = value; }
+    public Vector3 Move { get => move; set => move = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +45,7 @@ public class Player_Mov : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * z;
+            move = transform.right * x + transform.forward * z;
             controller.Move(move * (baseSpeed + speedBoost) * Time.deltaTime);
 
             //Sprint

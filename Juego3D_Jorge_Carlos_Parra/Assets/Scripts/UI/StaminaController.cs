@@ -16,9 +16,8 @@ public class StaminaController : MonoBehaviour
 
     private void Start()
     {
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
         staminaBar.fillAmount = (float)GameManager.instance.stamina / GameManager.instance.maxStamina;
