@@ -39,6 +39,25 @@ public class Player_Mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Salto
+        isGrounded = Physics.CheckSphere(groundCheck.position, SphereRadius, groundMask);
+        if (controller.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
         if (canMove)
         {
             //Movement
@@ -68,22 +87,6 @@ public class Player_Mov : MonoBehaviour
                     canSprint = true;
                 }
             }
-
-            //Salto
-            isGrounded = Physics.CheckSphere(groundCheck.position, SphereRadius, groundMask);
-            if (controller.isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            }
-
-            velocity.y += gravity * Time.deltaTime;
-
-            controller.Move(velocity * Time.deltaTime);
         }
     }
 }
