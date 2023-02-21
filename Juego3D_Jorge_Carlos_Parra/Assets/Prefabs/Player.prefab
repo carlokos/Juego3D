@@ -258,13 +258,14 @@ MonoBehaviour:
   baseSpeed: 3
   gravity: -9.81
   jumpHeight: 1.5
+  move: {x: 0, y: 0, z: 0}
   SphereRadius: 5
   groundCheck: {fileID: 9086451909950102964}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  StaminaCost: 0.5
-  StaminaRecovery: 0.02
+  StaminaCost: 0.7
+  StaminaRecovery: 0.65
   sprintSpeed: 5
 --- !u!136 &1835205035
 CapsuleCollider:
@@ -313,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHitbox: {fileID: 1567771815}
+  shieldingStaminaCost: 0.7
 --- !u!54 &1892751093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -342,10 +344,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 9086451909585305990}
-  dashForce: 10
+  dashForce: 15
   dashDuration: 0.25
-  staminaCost: 20
-  dashCd: 0.2
+  staminaCost: 40
+  dashCd: 0.5
 --- !u!1001 &846893965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -432,8 +434,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.29391733, y: 1.1826065, z: 0.08148708}
-  m_Center: {x: -0.0000132921, y: 0.45784378, z: 0.000015273017}
+  m_Size: {x: 0.29391733, y: 1.6110401, z: 0.08148708}
+  m_Center: {x: 0.010295547, y: 0.672564, z: -0.0045599523}
 --- !u!114 &1567771814
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,29 +24,34 @@ public class Player_dash : MonoBehaviour
     {
         playerMov = GetComponent<Player_Mov>();
     }
-
     private void Update()
     {
-        if(dashCdTimer > 0)
+        if (dashCdTimer > 0)
         {
             dashCdTimer -= Time.deltaTime;
         }
+    }
 
-        if (Input.GetKeyDown(dashKey) && dashCdTimer <= 0)
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(dashKey) && dashCdTimer <= 0 && GameManager.instance.stamina > staminaCost)
         {
             dashCdTimer = dashCd;
-            GameManager.instance.LoseStamina(staminaCost);
             StartCoroutine(Dash());
         }
     }
+
     private IEnumerator Dash()
     {
         float startTime = Time.time;
-
-        while(Time.time < startTime + dashDuration)
+        if (playerMov.Move != new Vector3(0, 0, 0))
         {
-            playerMov.Controller.Move(playerMov.Move * dashForce * Time.deltaTime);
-            yield return null;
+            GameManager.instance.stamina -= staminaCost;
+            while (Time.time < startTime + dashDuration)
+            {
+                playerMov.Controller.Move(playerMov.Move * dashForce * Time.deltaTime);
+                yield return null;
+            }
         }
     }
 }

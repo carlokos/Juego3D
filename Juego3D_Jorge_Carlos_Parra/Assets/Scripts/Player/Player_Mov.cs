@@ -9,7 +9,7 @@ public class Player_Mov : MonoBehaviour
     [SerializeField] private float baseSpeed = 12f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
-    private Vector3 move;
+    public Vector3 move;
     private bool canMove = true;
 
     [Header("Jump Properties")]
@@ -29,6 +29,8 @@ public class Player_Mov : MonoBehaviour
     public bool CanMove { get => canMove; set => canMove = value; }
     public CharacterController Controller { get => controller; set => controller = value; }
     public Vector3 Move { get => move; set => move = value; }
+    public bool CanSprint { get => canSprint; set => canSprint = value; }
+    public float StaminaRecovery1 { get => StaminaRecovery; set => StaminaRecovery = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +81,7 @@ public class Player_Mov : MonoBehaviour
                 GameManager.instance.RecoverStamina(StaminaRecovery);
             }
 
-            if (GameManager.instance.stamina <= 0 || !canSprint)
+            if (GameManager.instance.stamina <= 0.3f || !canSprint)
             {
                 canSprint = false;
                 if (GameManager.instance.stamina > GameManager.instance.maxStamina / 4)
