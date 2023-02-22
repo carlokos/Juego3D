@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class MainMenu_camera_animation : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class MainMenu_camera_animation : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayAnimation()
@@ -49,5 +50,10 @@ public class MainMenu_camera_animation : MonoBehaviour
         }
 
         panel.SetActive(true);
+    }
+
+    public void goToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

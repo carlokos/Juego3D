@@ -30,10 +30,7 @@ public class Player_dash : MonoBehaviour
         {
             dashCdTimer -= Time.deltaTime;
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (Input.GetKeyDown(dashKey) && dashCdTimer <= 0 && GameManager.instance.stamina > staminaCost)
         {
             dashCdTimer = dashCd;

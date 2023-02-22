@@ -6,30 +6,28 @@ using UnityEngine;
 public class Detect_player : MonoBehaviour
 {
     private bool inRange;
-    [SerializeField] private TextMeshProUGUI txtPickItem;
-    [Header("ItemChoise")]
-    [SerializeField] private bool isRedPotion;
-    [SerializeField] private bool isGreenPotion;
+    private Animator anim;
+    [SerializeField] private TextMeshProUGUI txtInteract;
+    [SerializeField] private string msg;
+    [SerializeField] private bool interactable;
 
-
+    private void Start()
+    {
+        if (interactable)
+        {
+            anim = GetComponent<Animator>();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        if(inRange && Input.GetKeyDown(KeyCode.E))
+        if (inRange)
         {
-            txtPickItem.gameObject.SetActive(false);
-            if (isRedPotion)
+            txtInteract.text = msg;
+            if (interactable && Input.GetKeyDown(KeyCode.F))
             {
-                GameManager.instance.maxLife += 10;
-                GameManager.instance.life = GameManager.instance.maxLife;
+                anim.SetTrigger("Activate");
             }
-
-            if (isGreenPotion)
-            {
-                GameManager.instance.maxStamina += 60;
-                GameManager.instance.stamina = GameManager.instance.maxStamina;
-            }
-            Destroy(this.gameObject);
         }
     }
 
@@ -38,7 +36,7 @@ public class Detect_player : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inRange = true;
-            txtPickItem.gameObject.SetActive(true);
+            txtInteract.gameObject.SetActive(true);
         }
     }
 
@@ -47,7 +45,7 @@ public class Detect_player : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inRange = false;
-            txtPickItem.gameObject.SetActive(false);
+            txtInteract.gameObject.SetActive(false);
         }
     }
 }

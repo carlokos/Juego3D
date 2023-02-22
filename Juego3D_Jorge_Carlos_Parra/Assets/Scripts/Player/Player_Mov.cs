@@ -13,7 +13,7 @@ public class Player_Mov : MonoBehaviour
     private bool canMove = true;
 
     [Header("Jump Properties")]
-    [SerializeField] private float SphereRadius = 5;
+    [SerializeField] private float SphereRadius = 0.5f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
     private bool isGrounded;
@@ -90,5 +90,11 @@ public class Player_Mov : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, SphereRadius);
     }
 }
